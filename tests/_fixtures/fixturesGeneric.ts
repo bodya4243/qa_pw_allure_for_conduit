@@ -15,7 +15,7 @@ export const test = base.extend<
         users;
         infoTestLog;
         addAllureTestHierarchy;
-        deleteAllureReport
+        deleteAllureReport;
     },
     {
         logger;
@@ -85,15 +85,15 @@ export const test = base.extend<
         { scope: 'test', auto: true },
     ],
     deleteAllureReport: [
-        async (use) => {
-            const folderPath = path.join(__dirname, 'allure-results')
+        async ({}, use) => {
+            const folderPath = path.join(process.cwd(), 'allure-results');
 
-            if(fs.existsSync(folderPath)) {
-                fs.rmSync(folderPath, {recursive: true, force: true});
+            if (fs.existsSync(folderPath)) {
+                fs.rmSync(folderPath, { recursive: true, force: true });
             }
 
-            await use()
+            await use();
         },
         { scope: 'worker', auto: true },
-    ]
+    ],
 });
