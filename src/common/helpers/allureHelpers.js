@@ -14,7 +14,10 @@ export function parseTestTreeHierarchy(fileName, logger) {
         attributes[attributes.length - 1] = attributes.at(-1).replace('.spec.js', '');
     }
 
-    logger.debug(`Parsed test hierarchy: ${JSON.stringify(attributes)}`);
+    const [parentSuite, suite, subSuite] = attributes;
+    const hierarchy = [parentSuite, suite, subSuite];
 
-    return attributes;
+    logger.debug(`Parsed test hierarchy: ${JSON.stringify(hierarchy)}`);
+
+    return hierarchy;
 }
